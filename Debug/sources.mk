@@ -25,5 +25,6 @@ App \
 HAL/Keypad/Source \
 HAL/LCD/Source \
 HAL/SevSeg/Source \
+MCAL/ADC/Source \
 MCAL/DIO/Source \
 

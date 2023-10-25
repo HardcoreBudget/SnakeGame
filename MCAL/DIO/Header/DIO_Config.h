@@ -8,8 +8,8 @@
 #ifndef MCAL_DIO_HEADER_DIO_CONFIG_H_
 #define MCAL_DIO_HEADER_DIO_CONFIG_H_
 
-#define DIO_PINA0		Output
-#define DIO_PINA1		Output
+#define DIO_PINA0		Input
+#define DIO_PINA1		Input
 #define DIO_PINA2		Output
 #define DIO_PINA3		Output
 #define DIO_PINA4		Output
