@@ -182,6 +182,19 @@ void LCD_voidGoToPosition(u8 X_Position, u8 Y_Position){
 	LCD_voidSendCommand(Local_Address);
 }
 
+void LCD_voidClearPosition(u8 X_Position, u8 Y_Position){
+	LCD_voidGoToPosition(X_Position, Y_Position);
+	LCD_voidWriteChar(' ');
+}
+
+void LCD_voidClearLine(u8 X_Position){
+	u8 Y_Position = 0;
+	while(Y_Position <20){
+		LCD_voidClearPosition(X_Position,Y_Position);
+		Y_Position++;
+	}
+}
+
 void LCD_voidDisplaySpecialChar(u8 *char_ptr,u8 CGRam_index,u8 row,u8 column){
 	LCD_voidGoToPosition(row,column);
 	LCD_voidWriteChar(CGRam_index);

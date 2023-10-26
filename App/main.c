@@ -191,7 +191,7 @@ int main(){
 				DIO_voidSetPinValue(DIO_PortC, DIO_PIN6, Low);
 			}
 		}
-		LCD_voidSendCommand(LCD_ClearDisplay);
+//		LCD_voidSendCommand(LCD_ClearDisplay);
 		if(endGame == 0){
 			LCD_voidGoToPosition(foodX,foodY);
 			LCD_voidWriteChar('o');
@@ -203,6 +203,7 @@ int main(){
 			}
 		}
 		else{
+			LCD_voidSendCommand(LCD_ClearDisplay);
 			endGame = 0;
 			LCD_voidGoToPosition(1,5);
 			DIO_voidSetPinValue(DIO_PortC, DIO_PIN6, High);
@@ -258,6 +259,7 @@ void MoveSnake(){
 	s8 index = 0;
 	index = currentSize - 1;
 	posArr[snakeArr[index].posX][snakeArr[index].posY] = 0;
+	LCD_voidClearPosition(snakeArr[index].posX, snakeArr[index].posY);
 	while(index >= 0){
 		if(index != 0){
 			snakeArr[index].currentDirection = snakeArr[index - 1].currentDirection;
