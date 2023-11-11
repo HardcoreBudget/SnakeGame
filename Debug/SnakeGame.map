@@ -76,6 +76,7 @@ signature        0x00840000         0x00000400         rw !x
 Linker script and memory map
 
 LOAD d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+LOAD ./MCAL/I2C/Source/I2C_Imp.o
 LOAD ./MCAL/DIO/Source/DIO_Imp.o
 LOAD ./MCAL/ADC/Source/ADC_Imp.o
 LOAD ./HAL/SevSeg/Source/SevSeg_Imp.o
@@ -176,7 +177,7 @@ LOAD d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x5d2c
+.text           0x00000000     0x6226
  *(.vectors)
  .vectors       0x00000000       0x54 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -252,6 +253,7 @@ LOAD d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_
                 0x0000008e                __vector_10
                 0x0000008e                __vector_18
                 0x0000008e                __vector_20
+ .text          0x00000092        0x0 ./MCAL/I2C/Source/I2C_Imp.o
  .text          0x00000092        0x0 ./MCAL/DIO/Source/DIO_Imp.o
  .text          0x00000092        0x0 ./MCAL/ADC/Source/ADC_Imp.o
  .text          0x00000092        0x0 ./HAL/SevSeg/Source/SevSeg_Imp.o
@@ -302,198 +304,237 @@ LOAD d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_
  .text          0x00000e2e        0x0 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(rand.o)
                 0x00000e2e                . = ALIGN (0x2)
  *(.text.*)
+ .text.I2C_Master_voidInit
+                0x00000e2e       0x40 ./MCAL/I2C/Source/I2C_Imp.o
+                0x00000e2e                I2C_Master_voidInit
+ .text.I2C_Slave_voidInit
+                0x00000e6e       0x38 ./MCAL/I2C/Source/I2C_Imp.o
+                0x00000e6e                I2C_Slave_voidInit
+ .text.I2C_Master_enuSendStartCond
+                0x00000ea6       0x40 ./MCAL/I2C/Source/I2C_Imp.o
+                0x00000ea6                I2C_Master_enuSendStartCond
+ .text.I2C_Master_enuSendRepeatedStartCond
+                0x00000ee6       0x40 ./MCAL/I2C/Source/I2C_Imp.o
+                0x00000ee6                I2C_Master_enuSendRepeatedStartCond
+ .text.I2C_Master_enuSendSlaveAddressWithRead
+                0x00000f26       0x5a ./MCAL/I2C/Source/I2C_Imp.o
+                0x00000f26                I2C_Master_enuSendSlaveAddressWithRead
+ .text.I2C_Master_enuSendSlaveAddressWithWrite
+                0x00000f80       0x5a ./MCAL/I2C/Source/I2C_Imp.o
+                0x00000f80                I2C_Master_enuSendSlaveAddressWithWrite
+ .text.I2C_Master_enuSendu8Data
+                0x00000fda       0x4c ./MCAL/I2C/Source/I2C_Imp.o
+                0x00000fda                I2C_Master_enuSendu8Data
+ .text.I2C_Master_enuReadu8Data
+                0x00001026       0x6a ./MCAL/I2C/Source/I2C_Imp.o
+                0x00001026                I2C_Master_enuReadu8Data
+ .text.I2C_Master_voidFlush
+                0x00001090       0x40 ./MCAL/I2C/Source/I2C_Imp.o
+                0x00001090                I2C_Master_voidFlush
+ .text.I2C_Master_enuSendStopCond
+                0x000010d0       0x2c ./MCAL/I2C/Source/I2C_Imp.o
+                0x000010d0                I2C_Master_enuSendStopCond
+ .text.I2C_Slave_enuReadu8Data
+                0x000010fc       0x1a ./MCAL/I2C/Source/I2C_Imp.o
+                0x000010fc                I2C_Slave_enuReadu8Data
  .text.DIO_voidInit
-                0x00000e2e       0x2e ./MCAL/DIO/Source/DIO_Imp.o
-                0x00000e2e                DIO_voidInit
+                0x00001116       0x2e ./MCAL/DIO/Source/DIO_Imp.o
+                0x00001116                DIO_voidInit
  .text.DIO_voidSetPinDir
-                0x00000e5c      0x21c ./MCAL/DIO/Source/DIO_Imp.o
-                0x00000e5c                DIO_voidSetPinDir
+                0x00001144      0x21c ./MCAL/DIO/Source/DIO_Imp.o
+                0x00001144                DIO_voidSetPinDir
  .text.DIO_voidSetPinValue
-                0x00001078      0x21c ./MCAL/DIO/Source/DIO_Imp.o
-                0x00001078                DIO_voidSetPinValue
+                0x00001360      0x21c ./MCAL/DIO/Source/DIO_Imp.o
+                0x00001360                DIO_voidSetPinValue
  .text.DIO_u8GetPinValue
-                0x00001294      0x118 ./MCAL/DIO/Source/DIO_Imp.o
-                0x00001294                DIO_u8GetPinValue
+                0x0000157c      0x118 ./MCAL/DIO/Source/DIO_Imp.o
+                0x0000157c                DIO_u8GetPinValue
  .text.DIO_voidTogglePin
-                0x000013ac      0x114 ./MCAL/DIO/Source/DIO_Imp.o
-                0x000013ac                DIO_voidTogglePin
+                0x00001694      0x114 ./MCAL/DIO/Source/DIO_Imp.o
+                0x00001694                DIO_voidTogglePin
  .text.DIO_voidSetPortDir
-                0x000014c0       0x90 ./MCAL/DIO/Source/DIO_Imp.o
-                0x000014c0                DIO_voidSetPortDir
+                0x000017a8       0x90 ./MCAL/DIO/Source/DIO_Imp.o
+                0x000017a8                DIO_voidSetPortDir
  .text.DIO_voidSetPortValue
-                0x00001550       0x90 ./MCAL/DIO/Source/DIO_Imp.o
-                0x00001550                DIO_voidSetPortValue
+                0x00001838       0x90 ./MCAL/DIO/Source/DIO_Imp.o
+                0x00001838                DIO_voidSetPortValue
  .text.DIO_u8GetPortValue
-                0x000015e0       0x96 ./MCAL/DIO/Source/DIO_Imp.o
-                0x000015e0                DIO_u8GetPortValue
+                0x000018c8       0x96 ./MCAL/DIO/Source/DIO_Imp.o
+                0x000018c8                DIO_u8GetPortValue
  .text.DIO_voidTogglePort
-                0x00001676       0xa8 ./MCAL/DIO/Source/DIO_Imp.o
-                0x00001676                DIO_voidTogglePort
+                0x0000195e       0xa8 ./MCAL/DIO/Source/DIO_Imp.o
+                0x0000195e                DIO_voidTogglePort
  .text.ADC_voidInit
-                0x0000171e       0x7a ./MCAL/ADC/Source/ADC_Imp.o
-                0x0000171e                ADC_voidInit
+                0x00001a06       0x7a ./MCAL/ADC/Source/ADC_Imp.o
+                0x00001a06                ADC_voidInit
  .text.ADC_voidEnable
-                0x00001798       0x1c ./MCAL/ADC/Source/ADC_Imp.o
-                0x00001798                ADC_voidEnable
+                0x00001a80       0x1c ./MCAL/ADC/Source/ADC_Imp.o
+                0x00001a80                ADC_voidEnable
  .text.ADC_voidInterrputEnable
-                0x000017b4       0x1c ./MCAL/ADC/Source/ADC_Imp.o
-                0x000017b4                ADC_voidInterrputEnable
+                0x00001a9c       0x1c ./MCAL/ADC/Source/ADC_Imp.o
+                0x00001a9c                ADC_voidInterrputEnable
  .text.ADC_voidInterrputDisable
-                0x000017d0       0x1c ./MCAL/ADC/Source/ADC_Imp.o
-                0x000017d0                ADC_voidInterrputDisable
+                0x00001ab8       0x1c ./MCAL/ADC/Source/ADC_Imp.o
+                0x00001ab8                ADC_voidInterrputDisable
  .text.ADC_voidDisable
-                0x000017ec       0x1c ./MCAL/ADC/Source/ADC_Imp.o
-                0x000017ec                ADC_voidDisable
+                0x00001ad4       0x1c ./MCAL/ADC/Source/ADC_Imp.o
+                0x00001ad4                ADC_voidDisable
  .text.ADC_u16ReadADC
-                0x00001808       0x76 ./MCAL/ADC/Source/ADC_Imp.o
-                0x00001808                ADC_u16ReadADC
+                0x00001af0       0x76 ./MCAL/ADC/Source/ADC_Imp.o
+                0x00001af0                ADC_u16ReadADC
  .text.ADC_voidStartConversion
-                0x0000187e       0x64 ./MCAL/ADC/Source/ADC_Imp.o
-                0x0000187e                ADC_voidStartConversion
+                0x00001b66       0x64 ./MCAL/ADC/Source/ADC_Imp.o
+                0x00001b66                ADC_voidStartConversion
  .text.ADC_voidStartInterruptConversion
-                0x000018e2       0x40 ./MCAL/ADC/Source/ADC_Imp.o
-                0x000018e2                ADC_voidStartInterruptConversion
+                0x00001bca       0x40 ./MCAL/ADC/Source/ADC_Imp.o
+                0x00001bca                ADC_voidStartInterruptConversion
  .text.ADC_voidChaining
-                0x00001922       0x32 ./MCAL/ADC/Source/ADC_Imp.o
-                0x00001922                ADC_voidChaining
+                0x00001c0a       0x32 ./MCAL/ADC/Source/ADC_Imp.o
+                0x00001c0a                ADC_voidChaining
  .text.ADC_u16ReadADCInMV
-                0x00001954       0x8a ./MCAL/ADC/Source/ADC_Imp.o
-                0x00001954                ADC_u16ReadADCInMV
+                0x00001c3c       0x8a ./MCAL/ADC/Source/ADC_Imp.o
+                0x00001c3c                ADC_u16ReadADCInMV
  .text.ADC_voidSetCallback
-                0x000019de       0x24 ./MCAL/ADC/Source/ADC_Imp.o
-                0x000019de                ADC_voidSetCallback
+                0x00001cc6       0x24 ./MCAL/ADC/Source/ADC_Imp.o
+                0x00001cc6                ADC_voidSetCallback
  .text.__vector_16
-                0x00001a02       0x66 ./MCAL/ADC/Source/ADC_Imp.o
-                0x00001a02                __vector_16
+                0x00001cea       0x66 ./MCAL/ADC/Source/ADC_Imp.o
+                0x00001cea                __vector_16
  .text.SevSeg_voidSingleInit
-                0x00001a68       0x16 ./HAL/SevSeg/Source/SevSeg_Imp.o
-                0x00001a68                SevSeg_voidSingleInit
+                0x00001d50       0x16 ./HAL/SevSeg/Source/SevSeg_Imp.o
+                0x00001d50                SevSeg_voidSingleInit
  .text.SevSeg_voidDoubleInit
-                0x00001a7e       0x1e ./HAL/SevSeg/Source/SevSeg_Imp.o
-                0x00001a7e                SevSeg_voidDoubleInit
+                0x00001d66       0x1e ./HAL/SevSeg/Source/SevSeg_Imp.o
+                0x00001d66                SevSeg_voidDoubleInit
  .text.SevSeg_voidDisplayNumber
-                0x00001a9c       0x8a ./HAL/SevSeg/Source/SevSeg_Imp.o
-                0x00001a9c                SevSeg_voidDisplayNumber
+                0x00001d84       0x8a ./HAL/SevSeg/Source/SevSeg_Imp.o
+                0x00001d84                SevSeg_voidDisplayNumber
  .text.SevSeg_voidSingleAutoCounter
-                0x00001b26      0x1a6 ./HAL/SevSeg/Source/SevSeg_Imp.o
-                0x00001b26                SevSeg_voidSingleAutoCounter
+                0x00001e0e      0x1a6 ./HAL/SevSeg/Source/SevSeg_Imp.o
+                0x00001e0e                SevSeg_voidSingleAutoCounter
  .text.SevSeg_voidDoubleAutoCounter
-                0x00001ccc      0x202 ./HAL/SevSeg/Source/SevSeg_Imp.o
-                0x00001ccc                SevSeg_voidDoubleAutoCounter
+                0x00001fb4      0x202 ./HAL/SevSeg/Source/SevSeg_Imp.o
+                0x00001fb4                SevSeg_voidDoubleAutoCounter
  .text.SevSeg_voidSingleRangeCounter
-                0x00001ece      0x342 ./HAL/SevSeg/Source/SevSeg_Imp.o
-                0x00001ece                SevSeg_voidSingleRangeCounter
+                0x000021b6      0x342 ./HAL/SevSeg/Source/SevSeg_Imp.o
+                0x000021b6                SevSeg_voidSingleRangeCounter
  .text.SevSeg_voidDoubleRangeCounter
-                0x00002210      0x4c0 ./HAL/SevSeg/Source/SevSeg_Imp.o
-                0x00002210                SevSeg_voidDoubleRangeCounter
+                0x000024f8      0x4c0 ./HAL/SevSeg/Source/SevSeg_Imp.o
+                0x000024f8                SevSeg_voidDoubleRangeCounter
  .text.SevSeg_voidBCDDisplay
-                0x000026d0       0x20 ./HAL/SevSeg/Source/SevSeg_Imp.o
-                0x000026d0                SevSeg_voidBCDDisplay
+                0x000029b8       0x20 ./HAL/SevSeg/Source/SevSeg_Imp.o
+                0x000029b8                SevSeg_voidBCDDisplay
  .text.SevSeg_voidBCDDoubleDisplay
-                0x000026f0      0x49a ./HAL/SevSeg/Source/SevSeg_Imp.o
-                0x000026f0                SevSeg_voidBCDDoubleDisplay
+                0x000029d8      0x49a ./HAL/SevSeg/Source/SevSeg_Imp.o
+                0x000029d8                SevSeg_voidBCDDoubleDisplay
  .text.SevSeg_voidMulBCD
-                0x00002b8a      0x612 ./HAL/SevSeg/Source/SevSeg_Imp.o
-                0x00002b8a                SevSeg_voidMulBCD
+                0x00002e72      0x612 ./HAL/SevSeg/Source/SevSeg_Imp.o
+                0x00002e72                SevSeg_voidMulBCD
  .text.LCD_voidInit
-                0x0000319c      0xc00 ./HAL/LCD/Source/LCD_Imp.o
-                0x0000319c                LCD_voidInit
+                0x00003484      0xc00 ./HAL/LCD/Source/LCD_Imp.o
+                0x00003484                LCD_voidInit
  .text.LCD_voidSendCommand
-                0x00003d9c      0x1e0 ./HAL/LCD/Source/LCD_Imp.o
-                0x00003d9c                LCD_voidSendCommand
+                0x00004084      0x1e0 ./HAL/LCD/Source/LCD_Imp.o
+                0x00004084                LCD_voidSendCommand
  .text.LCD_voidSendInitCommand
-                0x00003f7c      0x180 ./HAL/LCD/Source/LCD_Imp.o
-                0x00003f7c                LCD_voidSendInitCommand
+                0x00004264      0x180 ./HAL/LCD/Source/LCD_Imp.o
+                0x00004264                LCD_voidSendInitCommand
  .text.LCD_voidWriteChar
-                0x000040fc      0x1e0 ./HAL/LCD/Source/LCD_Imp.o
-                0x000040fc                LCD_voidWriteChar
+                0x000043e4      0x1e0 ./HAL/LCD/Source/LCD_Imp.o
+                0x000043e4                LCD_voidWriteChar
  .text.LCD_voidWriteString
-                0x000042dc       0x52 ./HAL/LCD/Source/LCD_Imp.o
-                0x000042dc                LCD_voidWriteString
+                0x000045c4       0x52 ./HAL/LCD/Source/LCD_Imp.o
+                0x000045c4                LCD_voidWriteString
  .text.IntToString
-                0x0000432e      0x18a ./HAL/LCD/Source/LCD_Imp.o
-                0x0000432e                IntToString
+                0x00004616      0x18a ./HAL/LCD/Source/LCD_Imp.o
+                0x00004616                IntToString
  .text.LCD_voidWriteIntData
-                0x000044b8       0x6a ./HAL/LCD/Source/LCD_Imp.o
-                0x000044b8                LCD_voidWriteIntData
+                0x000047a0       0x6a ./HAL/LCD/Source/LCD_Imp.o
+                0x000047a0                LCD_voidWriteIntData
  .text.LCD_voidWriteFloatData
-                0x00004522      0x13e ./HAL/LCD/Source/LCD_Imp.o
-                0x00004522                LCD_voidWriteFloatData
+                0x0000480a      0x13e ./HAL/LCD/Source/LCD_Imp.o
+                0x0000480a                LCD_voidWriteFloatData
  .text.LCD_voidGoToPosition
-                0x00004660       0x62 ./HAL/LCD/Source/LCD_Imp.o
-                0x00004660                LCD_voidGoToPosition
+                0x00004948       0x62 ./HAL/LCD/Source/LCD_Imp.o
+                0x00004948                LCD_voidGoToPosition
  .text.LCD_voidClearPosition
-                0x000046c2       0x26 ./HAL/LCD/Source/LCD_Imp.o
-                0x000046c2                LCD_voidClearPosition
+                0x000049aa       0x26 ./HAL/LCD/Source/LCD_Imp.o
+                0x000049aa                LCD_voidClearPosition
  .text.LCD_voidClearLine
-                0x000046e8       0x2e ./HAL/LCD/Source/LCD_Imp.o
-                0x000046e8                LCD_voidClearLine
+                0x000049d0       0x2e ./HAL/LCD/Source/LCD_Imp.o
+                0x000049d0                LCD_voidClearLine
  .text.LCD_voidDisplaySpecialChar
-                0x00004716       0x9a ./HAL/LCD/Source/LCD_Imp.o
-                0x00004716                LCD_voidDisplaySpecialChar
+                0x000049fe       0x9a ./HAL/LCD/Source/LCD_Imp.o
+                0x000049fe                LCD_voidDisplaySpecialChar
  .text.KPD_u8GetPressedKey
-                0x000047b0      0x172 ./HAL/Keypad/Source/Keypad_Imp.o
-                0x000047b0                KPD_u8GetPressedKey
- .text.main     0x00004922      0x6b0 ./App/main.o
-                0x00004922                main
+                0x00004a98      0x172 ./HAL/Keypad/Source/Keypad_Imp.o
+                0x00004a98                KPD_u8GetPressedKey
+ .text.main     0x00004c0a      0x840 ./App/main.o
+                0x00004c0a                main
  .text.LoadSnakeInCGRAM
-                0x00004fd2       0x7a ./App/main.o
-                0x00004fd2                LoadSnakeInCGRAM
+                0x0000544a       0x7a ./App/main.o
+                0x0000544a                LoadSnakeInCGRAM
  .text.InitializeSnake
-                0x0000504c       0x96 ./App/main.o
-                0x0000504c                InitializeSnake
+                0x000054c4       0x96 ./App/main.o
+                0x000054c4                InitializeSnake
  .text.SpawnSnake
-                0x000050e2       0xf0 ./App/main.o
-                0x000050e2                SpawnSnake
+                0x0000555a       0xf0 ./App/main.o
+                0x0000555a                SpawnSnake
  .text.MoveSnake
-                0x000051d2      0x6b4 ./App/main.o
-                0x000051d2                MoveSnake
+                0x0000564a      0x6b4 ./App/main.o
+                0x0000564a                MoveSnake
  .text.FindShape
-                0x00005886       0xe6 ./App/main.o
-                0x00005886                FindShape
+                0x00005cfe       0xe6 ./App/main.o
+                0x00005cfe                FindShape
  .text.ResetPositionArr
-                0x0000596c       0x68 ./App/main.o
-                0x0000596c                ResetPositionArr
+                0x00005de4       0x68 ./App/main.o
+                0x00005de4                ResetPositionArr
  .text.SpawnFood
-                0x000059d4       0x4e ./App/main.o
-                0x000059d4                SpawnFood
+                0x00005e4c       0x4e ./App/main.o
+                0x00005e4c                SpawnFood
  .text.UpdateSize
-                0x00005a22       0x50 ./App/main.o
-                0x00005a22                UpdateSize
- .text.Random   0x00005a72       0x4e ./App/main.o
-                0x00005a72                Random
- .text.libgcc   0x00005ac0       0x3e d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
-                0x00005ac0                __mulsi3
- .text.libgcc   0x00005afe       0x1a d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodqi4.o)
-                0x00005afe                __divmodqi4
- .text.libgcc   0x00005b18       0x26 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
-                0x00005b18                __divmodhi4
-                0x00005b18                _div
- .text.libgcc   0x00005b3e       0x36 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
-                0x00005b3e                __divmodsi4
- .text.libgcc   0x00005b74        0x0 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00005b74        0x0 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x00005b74        0x0 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x00005b74       0x18 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
-                0x00005b74                __udivmodqi4
- .text.libgcc   0x00005b8c       0x28 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
-                0x00005b8c                __udivmodhi4
- .text.libgcc   0x00005bb4       0x44 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x00005bb4                __udivmodsi4
- .text.libgcc   0x00005bf8       0x38 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x00005bf8                __prologue_saves__
- .text.libgcc   0x00005c30       0x36 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x00005c30                __epilogue_restores__
+                0x00005e9a       0x50 ./App/main.o
+                0x00005e9a                UpdateSize
+ .text.Random   0x00005eea       0x4e ./App/main.o
+                0x00005eea                Random
+ .text.RTC_Read_Clock
+                0x00005f38       0x48 ./App/main.o
+                0x00005f38                RTC_Read_Clock
+ .text.ConvertFromRTC
+                0x00005f80       0x3a ./App/main.o
+                0x00005f80                ConvertFromRTC
+ .text.libgcc   0x00005fba       0x3e d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+                0x00005fba                __mulsi3
+ .text.libgcc   0x00005ff8       0x1a d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodqi4.o)
+                0x00005ff8                __divmodqi4
+ .text.libgcc   0x00006012       0x26 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
+                0x00006012                __divmodhi4
+                0x00006012                _div
+ .text.libgcc   0x00006038       0x36 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+                0x00006038                __divmodsi4
+ .text.libgcc   0x0000606e        0x0 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x0000606e        0x0 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000606e        0x0 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x0000606e       0x18 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
+                0x0000606e                __udivmodqi4
+ .text.libgcc   0x00006086       0x28 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x00006086                __udivmodhi4
+ .text.libgcc   0x000060ae       0x44 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x000060ae                __udivmodsi4
+ .text.libgcc   0x000060f2       0x38 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x000060f2                __prologue_saves__
+ .text.libgcc   0x0000612a       0x36 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x0000612a                __epilogue_restores__
  .text.avr-libc
-                0x00005c66       0xc2 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(rand.o)
-                0x00005d02                rand_r
-                0x00005d08                rand
-                0x00005d12                srand
-                0x00005d28                . = ALIGN (0x2)
+                0x00006160       0xc2 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(rand.o)
+                0x000061fc                rand_r
+                0x00006202                rand
+                0x0000620c                srand
+                0x00006222                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00005d28        0x0 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00005d28                exit
-                0x00005d28                _exit
+ .fini9         0x00006222        0x0 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00006222                exit
+                0x00006222                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -512,14 +553,15 @@ LOAD d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00005d28        0x4 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00006222        0x4 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00005d2c                _etext = .
+                0x00006226                _etext = .
 
-.data           0x00800060      0x1b2 load address 0x00005d2c
+.data           0x00800060      0x1b2 load address 0x00006226
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .data          0x00800060        0x0 ./MCAL/I2C/Source/I2C_Imp.o
  .data          0x00800060        0x0 ./MCAL/DIO/Source/DIO_Imp.o
  .data          0x00800060        0x0 ./MCAL/ADC/Source/ADC_Imp.o
  .data          0x00800060        0x0 ./HAL/SevSeg/Source/SevSeg_Imp.o
@@ -591,10 +633,11 @@ LOAD d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_
                 0x00800212                _edata = .
                 0x00800212                PROVIDE (__data_end, .)
 
-.bss            0x00800212      0x1e6
+.bss            0x00800212      0x1e9
                 0x00800212                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x00800212        0x0 d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .bss           0x00800212        0x0 ./MCAL/I2C/Source/I2C_Imp.o
  .bss           0x00800212        0x0 ./MCAL/DIO/Source/DIO_Imp.o
  .bss           0x00800212        0x0 ./MCAL/ADC/Source/ADC_Imp.o
  .bss           0x00800212        0x0 ./HAL/SevSeg/Source/SevSeg_Imp.o
@@ -642,21 +685,27 @@ LOAD d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_
  .bss.foodAvailable
                 0x00800217        0x1 ./App/main.o
                 0x00800217                foodAvailable
- .bss.posArr    0x00800218       0x50 ./App/main.o
-                0x00800218                posArr
+ .bss.second    0x00800218        0x1 ./App/main.o
+                0x00800218                second
+ .bss.minute    0x00800219        0x1 ./App/main.o
+                0x00800219                minute
+ .bss.hour      0x0080021a        0x1 ./App/main.o
+                0x0080021a                hour
+ .bss.posArr    0x0080021b       0x50 ./App/main.o
+                0x0080021b                posArr
  *(COMMON)
- COMMON         0x00800268      0x190 ./App/main.o
-                0x00800268                snakeArr
-                0x008003f8                PROVIDE (__bss_end, .)
-                0x00005d2c                __data_load_start = LOADADDR (.data)
-                0x00005ede                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080026b      0x190 ./App/main.o
+                0x0080026b                snakeArr
+                0x008003fb                PROVIDE (__bss_end, .)
+                0x00006226                __data_load_start = LOADADDR (.data)
+                0x000063d8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008003f8        0x0
-                0x008003f8                PROVIDE (__noinit_start, .)
+.noinit         0x008003fb        0x0
+                0x008003fb                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008003f8                PROVIDE (__noinit_end, .)
-                0x008003f8                _end = .
-                0x008003f8                PROVIDE (__heap_start, .)
+                0x008003fb                PROVIDE (__noinit_end, .)
+                0x008003fb                _end = .
+                0x008003fb                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -674,23 +723,25 @@ LOAD d:/hazim/01- embedded systems avr tools/01- imt sdk/imt_sdk_win_64/imt_sdk_
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x4680
+.stab           0x00000000     0x4f98
  *(.stab)
- .stab          0x00000000      0x6cc ./MCAL/DIO/Source/DIO_Imp.o
- .stab          0x000006cc      0x504 ./MCAL/ADC/Source/ADC_Imp.o
+ .stab          0x00000000      0x738 ./MCAL/I2C/Source/I2C_Imp.o
+ .stab          0x00000738      0x6c0 ./MCAL/DIO/Source/DIO_Imp.o
+                                0x6cc (size before relaxing)
+ .stab          0x00000df8      0x504 ./MCAL/ADC/Source/ADC_Imp.o
                                 0x510 (size before relaxing)
- .stab          0x00000bd0     0x14ac ./HAL/SevSeg/Source/SevSeg_Imp.o
+ .stab          0x000012fc     0x14ac ./HAL/SevSeg/Source/SevSeg_Imp.o
                                0x14b8 (size before relaxing)
- .stab          0x0000207c     0x1380 ./HAL/LCD/Source/LCD_Imp.o
+ .stab          0x000027a8     0x1380 ./HAL/LCD/Source/LCD_Imp.o
                                0x1518 (size before relaxing)
- .stab          0x000033fc      0x2a0 ./HAL/Keypad/Source/Keypad_Imp.o
+ .stab          0x00003b28      0x2a0 ./HAL/Keypad/Source/Keypad_Imp.o
                                 0x2ac (size before relaxing)
- .stab          0x0000369c      0xfe4 ./App/main.o
-                               0x117c (size before relaxing)
+ .stab          0x00003dc8     0x11d0 ./App/main.o
+                               0x1368 (size before relaxing)
 
-.stabstr        0x00000000     0x17de
+.stabstr        0x00000000     0x1c04
  *(.stabstr)
- .stabstr       0x00000000     0x17de ./MCAL/DIO/Source/DIO_Imp.o
+ .stabstr       0x00000000     0x1c04 ./MCAL/I2C/Source/I2C_Imp.o
 
 .stab.excl
  *(.stab.excl)

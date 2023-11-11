@@ -27,4 +27,5 @@ HAL/LCD/Source \
 HAL/SevSeg/Source \
 MCAL/ADC/Source \
 MCAL/DIO/Source \
+MCAL/I2C/Source \
 

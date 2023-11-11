@@ -27,7 +27,7 @@
 #define DIO_PINB7		Output
 
 #define DIO_PINC0		Input
-#define DIO_PINC1		Input
+#define DIO_PINC1		Output
 #define DIO_PINC2		Input
 #define DIO_PINC3		Input
 #define DIO_PINC4		Input

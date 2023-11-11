@@ -1,16 +1,16 @@
 App/main.o App/main.o: ../App/main.c ../App/../Library/STD_types.h \
   ../App/../Library/Bit_Math.h ../App/../MCAL/DIO/Header/DIO_Interface.h \
   ../App/../MCAL/DIO/Header/DIO_Config.h \
-  ../App/../MCAL/ADC/Header/ADC_Interface.h \
-  ../App/../MCAL/ADC/Header/ADC_Register.h \
-  ../App/../MCAL/ADC/Header/ADC_Private.h \
-  ../App/../MCAL/ADC/Header/ADC_Config.h \
   ../App/../HAL/LCD/Header/LCD_Interface.h \
   ../App/../HAL/LCD/Header/LCD_Private.h \
   ../App/../HAL/LCD/Header/LCD_Config.h \
   ../App/../HAL/Keypad/Header/Keypad_Interface.h \
   ../App/../HAL/Keypad/Header/Keypad_Private.h \
-  ../App/../HAL/Keypad/Header/Keypad_Config.h
+  ../App/../HAL/Keypad/Header/Keypad_Config.h \
+  ../App/../MCAL/I2C/Header/I2C_Interface.h \
+  ../App/../MCAL/I2C/Header/I2C_Register.h \
+  ../App/../MCAL/I2C/Header/I2C_Private.h \
+  ../App/../MCAL/I2C/Header/I2C_Config.h
 
 ../App/../Library/STD_types.h:
 
@@ -19,14 +19,6 @@ App/main.o App/main.o: ../App/main.c ../App/../Library/STD_types.h \
 ../App/../MCAL/DIO/Header/DIO_Interface.h:
 
 ../App/../MCAL/DIO/Header/DIO_Config.h:
-
-../App/../MCAL/ADC/Header/ADC_Interface.h:
-
-../App/../MCAL/ADC/Header/ADC_Register.h:
-
-../App/../MCAL/ADC/Header/ADC_Private.h:
-
-../App/../MCAL/ADC/Header/ADC_Config.h:
 
 ../App/../HAL/LCD/Header/LCD_Interface.h:
 
@@ -39,3 +31,11 @@ App/main.o App/main.o: ../App/main.c ../App/../Library/STD_types.h \
 ../App/../HAL/Keypad/Header/Keypad_Private.h:
 
 ../App/../HAL/Keypad/Header/Keypad_Config.h:
+
+../App/../MCAL/I2C/Header/I2C_Interface.h:
+
+../App/../MCAL/I2C/Header/I2C_Register.h:
+
+../App/../MCAL/I2C/Header/I2C_Private.h:
+
+../App/../MCAL/I2C/Header/I2C_Config.h:

@@ -7,14 +7,18 @@
 #include "../Library/STD_types.h"
 #include "../Library/Bit_Math.h"
 #include "../MCAL/DIO/Header/DIO_Interface.h"
-#include "../MCAL/ADC/Header/ADC_Interface.h"
 #include "../HAL/LCD/Header/LCD_Interface.h"
 #include "../HAL/Keypad/Header/Keypad_Interface.h"
+#include "../MCAL/I2C/Header/I2C_Interface.h"
 #include "util/delay.h"
 #include <stdlib.h>
 
 #define MAX_SNAKE_LENGTH	80
 #define STARTING_SIZE		3
+
+#define MAX_CMD_SIZE	20
+#define SLAVE_ADDRESS				0xD0 //1010 XXXX
+#define TIME_REGISTER_ADDRESS		0x00 //XXXX Address
 
 void LoadSnakeInCGRAM();
 void InitializeSnake();
@@ -25,6 +29,9 @@ void ResetPositionArr();
 void UpdateSize();
 void SpawnFood();
 u8 Random(u8 lower, u8 upper);
+u8 ConvertFromRTC(u8 num);
+void RTC_Read_Clock();
+
 
 enum{
 	Right = 0,
@@ -54,6 +61,10 @@ u8 endGame = 0;
 u8 foodX = 0;
 u8 foodY = 0;
 u8 foodAvailable = 0;
+u8 second =0;
+u8 minute = 0;
+u8 hour = 0;
+
 u8 Head[4][8] = {
 		{//Right
 				0b00000,
@@ -145,11 +156,13 @@ u8 posArr[4][20] ={{0}};
 int main(){
 	DIO_voidInit();
 	DIO_voidSetPortValue(DIO_PortC, 0xFF);
-	ADC_voidInit();
-	ADC_voidEnable();
-	ADC_voidStartConversion(0);
-	srand(ADC_u16ReadADCInMV());
-	ADC_voidDisable();
+	I2C_Master_voidInit();
+	_delay_ms(200);
+	RTC_Read_Clock();
+	second = ConvertFromRTC(second);
+	minute = ConvertFromRTC(minute);
+	hour = ConvertFromRTC(hour);
+	srand(second^minute^hour);
 	LCD_voidInit();
 	LoadSnakeInCGRAM();
 	InitializeSnake();
@@ -191,7 +204,7 @@ int main(){
 				DIO_voidSetPinValue(DIO_PortC, DIO_PIN6, Low);
 			}
 		}
-//		LCD_voidSendCommand(LCD_ClearDisplay);
+		//		LCD_voidSendCommand(LCD_ClearDisplay);
 		if(endGame == 0){
 			LCD_voidGoToPosition(foodX,foodY);
 			LCD_voidWriteChar('o');
@@ -380,4 +393,21 @@ void UpdateSize(){
 u8 Random(u8 lower, u8 upper){
 	u8 num = (rand() %  (upper - lower + 1)) + lower;
 	return num;
+}
+
+void RTC_Read_Clock(){
+	I2C_Master_enuSendStartCond();
+	I2C_Master_enuSendSlaveAddressWithWrite(SLAVE_ADDRESS);
+	I2C_Master_enuSendu8Data(TIME_REGISTER_ADDRESS);
+	I2C_Master_enuSendRepeatedStartCond();
+	I2C_Master_enuSendSlaveAddressWithRead(SLAVE_ADDRESS);
+	I2C_Master_enuReadu8Data(&second);
+	I2C_Master_enuReadu8Data(&minute);
+	I2C_Master_enuReadu8Data(&hour);
+	I2C_Master_voidFlush();
+	I2C_Master_enuSendStopCond();
+}
+
+u8 ConvertFromRTC(u8 num){
+	return ((num>>4) * 10 + (num&0x0F));
 }
